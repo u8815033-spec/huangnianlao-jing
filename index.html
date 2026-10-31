@@ -149,9 +149,15 @@ html{scroll-padding-top:90px}.book-section,.reader-block,.section-title{scroll-m
 </script><script>
 (()=>{
   document.title='黃念祖居士《無量壽經白話解》｜手機閱讀版';
+  document.querySelectorAll('.reader-block').forEach(block=>{
+    const text=block.textContent||'';
+    if(/莖草集|聯繫我們|聲明啟事/.test(text)||text.includes('網站編輯說明')||text.includes('黃念老法音網站所發布的《大乘無量壽經白話解》'))block.remove();
+  });
+  const cover=document.querySelector('.cover-text');
+  if(cover)cover.textContent='大乘無量壽經白話解\n手機閱讀整理版\n黃念祖居士著';
   const contact=document.createElement('section');
   contact.className='contact-section';
-  contact.innerHTML='<h2>閱讀說明</h2><p>本手機閱讀版內容整理自 <a href="https://huangnianlao.net/" target="_blank" rel="noopener">黃念老法音網站</a> 所發布的《大乘無量壽經白話解》及相關講座文字，依原有品次與內容順序編排，方便現代讀者在手機上閱讀、搜尋與學習。</p><p>願這份整理能讓更多有緣人接觸黃念祖老居士及歷代祖師大德的教誨。內容以原網站文字為依據，僅作閱讀編排與介面整理；如需引用，請註明原始來源，並請勿任意更動原文。</p><p class="source-credit">原始來源：<a href="https://huangnianlao.net/" target="_blank" rel="noopener">黃念老法音網站</a></p>';
+  contact.innerHTML='<h2>閱讀說明</h2><p><strong>本頁為個人整理的非官方手機閱讀版，與原網站及任何出版、流通單位沒有隸屬關係。</strong></p><p>內容整理自 <a href="https://huangnianlao.net/" target="_blank" rel="noopener">黃念老法音網站</a> 所發布的《大乘無量壽經白話解》及相關講座文字，依原有品次與內容順序編排，方便現代讀者在手機上閱讀、搜尋與學習。</p><p>願這份整理能讓更多有緣人接觸黃念祖老居士及歷代祖師大德的教誨。本頁僅作閱讀編排與介面整理；如需引用，請註明原始來源，並請勿將本頁視為官方網站。</p><p class="source-credit">原始來源：<a href="https://huangnianlao.net/" target="_blank" rel="noopener">黃念老法音網站</a></p>';
   const style=document.createElement('style');
   style.textContent='.contact-section{max-width:760px;margin:70px auto 35px;padding:25px 0;border-top:1px solid #d8c8a7;color:#6f604d;font:14px/2 "Songti TC","Noto Serif TC",serif}.contact-section h2,.contact-section h3{color:#80543f;font-weight:500}.contact-section a{color:#80633f}.contact-section .source-credit{font-size:12px;color:#8c795e}';
   document.head.append(style);
