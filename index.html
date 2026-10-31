@@ -150,9 +150,18 @@ html{scroll-padding-top:90px}.book-section,.reader-block,.section-title{scroll-m
 (()=>{
   const select=document.getElementById('mobile-section');
   if(!select)return;
-  const style=document.createElement('style');
-  style.textContent='.sidebar .nav-number{display:none}';
-  document.head.append(style);
+  let chapter=0;
+  document.querySelectorAll('.nav-link').forEach(link=>{
+    const number=link.querySelector('.nav-number');
+    const section=link.dataset.sectionLink||'';
+    if(!number)return;
+    if(section==='front-matter')number.textContent='序';
+    else if(section==='appendix')number.textContent='附';
+    else if(section==='huangnianlao-biography')number.textContent='傳';
+    else if(section.includes('總結正宗分'))number.textContent='補';
+    else {chapter++;number.textContent=String(chapter).padStart(2,'0');}
+    number.style.display='inline';
+  });
   const current=select.value;
   select.replaceChildren(new Option('選擇章節',''));
   document.querySelectorAll('.nav-link').forEach(link=>{
