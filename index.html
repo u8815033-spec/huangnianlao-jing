@@ -150,10 +150,14 @@ html{scroll-padding-top:90px}.book-section,.reader-block,.section-title{scroll-m
 (()=>{
   const select=document.getElementById('mobile-section');
   if(!select)return;
+  const style=document.createElement('style');
+  style.textContent='.sidebar .nav-number{display:none}';
+  document.head.append(style);
   const current=select.value;
   select.replaceChildren(new Option('選擇章節',''));
   document.querySelectorAll('.nav-link').forEach(link=>{
-    const option=new Option(link.textContent.replace(/\s+/g,' ').trim(),link.getAttribute('href'));
+    const name=link.querySelector('.nav-name')?.textContent||link.textContent;
+    const option=new Option(name.replace(/\s+/g,' ').trim(),link.getAttribute('href'));
     select.append(option);
   });
   if(current)select.value=current;
