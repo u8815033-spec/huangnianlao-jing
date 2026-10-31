@@ -146,4 +146,16 @@ html{scroll-padding-top:90px}.book-section,.reader-block,.section-title{scroll-m
 })();
 </script><script>
 (()=>{const s=document.getElementById('mobile-section');if(s)s.addEventListener('change',()=>{if(s.value)document.querySelector(s.value)?.scrollIntoView({behavior:'smooth',block:'start'})})})();
+</script><script>
+(()=>{
+  const select=document.getElementById('mobile-section');
+  if(!select)return;
+  const current=select.value;
+  select.replaceChildren(new Option('選擇章節',''));
+  document.querySelectorAll('.nav-link').forEach(link=>{
+    const option=new Option(link.textContent.replace(/\s+/g,' ').trim(),link.getAttribute('href'));
+    select.append(option);
+  });
+  if(current)select.value=current;
+})();
 </script></body></html>
